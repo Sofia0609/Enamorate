@@ -13,10 +13,10 @@ import bandejaDulcera1 from '../assets/bandeja-dulcera-1.jpeg';
 import bandejaDulcera2 from '../assets/bandeja-dulcera-2.jpeg';
 
 import felizDia1 from '../assets/feliz-dia-1.jpeg';
-import felizDia2 from '../assets/feliz-dia-1.jpeg';
-import felizDia3 from '../assets/feliz-dia-1.jpeg';
-import felizDia4 from '../assets/feliz-dia-1.jpeg';
-import felizDia5 from '../assets/feliz-dia-1.jpeg';
+import felizDia2 from '../assets/feliz-dia-2.jpeg';
+import felizDia3 from '../assets/feliz-dia-3.jpeg';
+import felizDia4 from '../assets/feliz-dia-4.jpeg';
+import felizDia5 from '../assets/feliz-dia-5.jpeg';
 
 import cajitaFeliz1 from '../assets/cajita-feliz-1.jpeg';
 import cajitaFeliz2 from '../assets/cajita-feliz-2.jpeg';
