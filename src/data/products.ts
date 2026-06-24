@@ -1,5 +1,24 @@
 import type { ProductItem, Additional } from '../types';
 
+// 1. IMPORTACIÓN EXPLÍCITA DE TODAS LAS IMÁGENES DESDE ASSETS
+import excelenteDia1 from '../assets/excelente dia 1.jpeg';
+import excelenteDia2 from '../assets/excelente dia 2.jpeg';
+import excelenteDia3 from '../assets/excelente dia 3.jpeg';
+import excelenteDia4 from '../assets/excelente dia 4.jpeg';
+
+import hoyEsTuDia1 from '../assets/hoy es tu dia 1.jpeg';
+import hoyEsTuDia2 from '../assets/hoy es tu dia 2.jpeg';
+
+import bandejaDulcera1 from '../assets/bandeja dulcera 1.jpeg';
+import bandejaDulcera2 from '../assets/bandeja dulcera 2.jpeg';
+
+import felizDia1 from '../assets/feliz dia 1.jpeg';
+
+import cajitaFeliz1 from '../assets/cajita feliz 1.jpeg';
+import cajitaFeliz2 from '../assets/cajita feliz 2.jpeg';
+import cajitaFeliz3 from '../assets/cajita feliz 3.jpeg';
+import cajitaFeliz4 from '../assets/cajita feliz 4.jpeg';
+
 export const WHATSAPP_NUMBER = '573116759247';
 
 export const products: ProductItem[] = [
@@ -20,10 +39,10 @@ export const products: ProductItem[] = [
       'Globo en helio x1 o metalizado x1',
     ],
     images: [
-      '/cajita-feliz-2.jpeg',
-      '/cajita-feliz-1.jpeg',
-      '/cajita-feliz-3.jpeg',
-      '/cajita-feliz-4.jpeg',
+      cajitaFeliz2,
+      cajitaFeliz1,
+      cajitaFeliz3,
+      cajitaFeliz4,
     ],
     customizable: {
       proteinas: [
@@ -60,11 +79,7 @@ export const products: ProductItem[] = [
       'Mini globos x2',
     ],
     images: [
-      '/feliz%20dia%201.jpeg',
-      '/feliz%20dia%202.jpeg',
-      '/feliz%20dia%203.jpeg',
-      '/feliz%20dia%204.jpeg',
-      '/feliz%20dia%205.jpeg'
+      felizDia1,
     ],
     customizable: {
       proteinas: [
@@ -104,10 +119,10 @@ export const products: ProductItem[] = [
       'Musg o dos globos en helio',
     ],
     images: [
-      '/excelente%20dia%201.jpeg',
-      '/excelente%20dia%202.jpeg',
-      '/excelente%20dia%203.jpeg',
-      '/excelente%20dia%204.jpeg',
+      excelenteDia1,
+      excelenteDia2,
+      excelenteDia3,
+      excelenteDia4,
     ],
     customizable: {
       proteinas: [
@@ -145,8 +160,8 @@ export const products: ProductItem[] = [
       'Musg o dos globos en helio',
     ],
     images: [
-      '/hoy%20es%20tu%20dia%202.jpeg',
-      '/hoy%20es%20tu%20dia%201.jpeg',
+      hoyEsTuDia2,
+      hoyEsTuDia1,
     ],
     customizable: {
       proteinas: [
@@ -175,8 +190,8 @@ export const products: ProductItem[] = [
       'Globo metalizado',
     ],
     images: [
-      '/bandeja%20dulcera%202.jpeg',
-      '/bandeja%20dulcera%201.jpeg',
+      bandejaDulcera2,
+      bandejaDulcera1,
     ],
     customizable: {
       proteinas: [],
@@ -193,7 +208,7 @@ export const adicionales: Additional[] = [
   { id: 'vino-gato-negro', name: 'Vino Gato Negro 750 ml', price: 80000 },
   { id: 'baileys', name: 'Baileys crema de whisky 750 ml', price: 85000 },
   { id: 'vino-chenet', name: 'Vino espumoso JP Chenet 750 ml', price: 90000 },
-  { id: 'ferrero-3', name: 'Choles Ferrero x3 (paquete)', price: 12000 },
+  { id: 'ferrero-3', name: 'Chocolates Ferrero x3 (paquete)', price: 12000 },
   { id: 'ferrero-4', name: 'Chocolates Ferrero x4 (caja)', price: 20000 },
   { id: 'ferrero-8', name: 'Chocolates Ferrero x8', price: 50000 },
   { id: 'musg', name: 'Musg personalizado', price: 20000, note: 'Mínimo 48h de anticipación' },

@@ -1,4 +1,5 @@
 import styles from './Footer.module.css';
+import logo from '../../assets/Logo_NavBar.png';
 import { WHATSAPP_NUMBER } from '../../data/products';
 
 const WhatsappIcon = () => (
@@ -21,7 +22,7 @@ export const Footer = () => {
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.brand}>
-            <img src="/Logo_NavBar.png" alt="Enamorate Logo" className={styles.brandLogo}/>
+            <img src={logo} alt="Enamorate Logo" className={styles.brandLogo}/>
             <p className={styles.brandSub}>Desayunos Sorpresa · Cali, Colombia</p>
             <p className={styles.delivery}>Envío gratis a todo Cali</p>
           </div>
