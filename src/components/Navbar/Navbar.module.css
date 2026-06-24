@@ -1,0 +1,118 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background: rgba(253, 246, 240, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.scrolled {
+  border-bottom-color: var(--color-petal);
+  box-shadow: 0 2px 20px rgba(192, 57, 43, 0.06);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* ─── Logo ─── */
+.logo {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}
+
+/* ─── Links ─── */
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-rose-light);
+}
+
+.active {
+  color: var(--color-white) !important;
+  background: var(--color-rose-light) !important;
+}
+
+/* ─── Burger ─── */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.burgerLine {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-charcoal);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .links {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: var(--space-2);
+    background: var(--color-cream);
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--color-petal);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transform: translateY(-110%);
+    opacity: 0;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+    pointer-events: none;
+  }
+
+  .links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .link {
+    width: 100%;
+    text-align: center;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .burgerLine:nth-child(1).burgerOpen { transform: translateY(7px) rotate(45deg); }
+  .burgerLine:nth-child(2).burgerOpen { opacity: 0; }
+  .burgerLine:nth-child(3).burgerOpen { transform: translateY(-7px) rotate(-45deg); }
+}
