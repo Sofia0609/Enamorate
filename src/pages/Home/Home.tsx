@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { products } from '../../data/products';
 import styles from './Home.module.css';
-import LogoFull from '../../assets/Logo_Full.svg';
+import LogoFull from '../../../public/assets/Logo_Full.svg';
 
 export const Home = () => {
   const [search, setSearch] = useState('');
