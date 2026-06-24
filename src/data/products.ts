@@ -20,10 +20,10 @@ export const products: ProductItem[] = [
       'Globo en helio x1 o metalizado x1',
     ],
     images: [
-      '/src/assets/cajita feliz 2.jpeg',
-      '/src/assets/cajita feliz 1.jpeg',
-      '/src/assets/cajita feliz 3.jpeg',
-      '/src/assets/cajita feliz 4.jpeg',
+      '/cajita feliz 2.jpeg',
+      '/cajita feliz 1.jpeg',
+      '/cajita feliz 3.jpeg',
+      '/cajita feliz 4.jpeg',
     ],
     customizable: {
       proteinas: [
@@ -60,7 +60,7 @@ export const products: ProductItem[] = [
       'Mini globos x2',
     ],
     images: [
-      '/src/assets/feliz dia 1.jpeg',
+      './feliz dia 1.jpeg',
     ],
     customizable: {
       proteinas: [
