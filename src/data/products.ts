@@ -1,23 +1,27 @@
 import type { ProductItem, Additional } from '../types';
 
-// 1. IMPORTACIÓN EXPLÍCITA DE TODAS LAS IMÁGENES DESDE ASSETS
-import excelenteDia1 from '../assets/excelente dia 1.jpeg';
-import excelenteDia2 from '../assets/excelente dia 2.jpeg';
-import excelenteDia3 from '../assets/excelente dia 3.jpeg';
-import excelenteDia4 from '../assets/excelente dia 4.jpeg';
+// 1. IMPORTACIONES CORREGIDAS CON GUIONES
+import excelenteDia1 from '../assets/excelente-dia-1.jpeg';
+import excelenteDia2 from '../assets/excelente-dia-2.jpeg';
+import excelenteDia3 from '../assets/excelente-dia-3.jpeg';
+import excelenteDia4 from '../assets/excelente-dia-4.jpeg';
 
-import hoyEsTuDia1 from '../assets/hoy es tu dia 1.jpeg';
-import hoyEsTuDia2 from '../assets/hoy es tu dia 2.jpeg';
+import hoyEsTuDia1 from '../assets/hoy-es-tu-dia-1.jpeg';
+import hoyEsTuDia2 from '../assets/hoy-es-tu-dia-2.jpeg';
 
-import bandejaDulcera1 from '../assets/bandeja dulcera 1.jpeg';
-import bandejaDulcera2 from '../assets/bandeja dulcera 2.jpeg';
+import bandejaDulcera1 from '../assets/bandeja-dulcera-1.jpeg';
+import bandejaDulcera2 from '../assets/bandeja-dulcera-2.jpeg';
 
-import felizDia1 from '../assets/feliz dia 1.jpeg';
+import felizDia1 from '../assets/feliz-dia-1.jpeg';
+import felizDia2 from '../assets/feliz-dia-1.jpeg';
+import felizDia3 from '../assets/feliz-dia-1.jpeg';
+import felizDia4 from '../assets/feliz-dia-1.jpeg';
+import felizDia5 from '../assets/feliz-dia-1.jpeg';
 
-import cajitaFeliz1 from '../assets/cajita feliz 1.jpeg';
-import cajitaFeliz2 from '../assets/cajita feliz 2.jpeg';
-import cajitaFeliz3 from '../assets/cajita feliz 3.jpeg';
-import cajitaFeliz4 from '../assets/cajita feliz 4.jpeg';
+import cajitaFeliz1 from '../assets/cajita-feliz-1.jpeg';
+import cajitaFeliz2 from '../assets/cajita-feliz-2.jpeg';
+import cajitaFeliz3 from '../assets/cajita-feliz-3.jpeg';
+import cajitaFeliz4 from '../assets/cajita-feliz-4.jpeg';
 
 export const WHATSAPP_NUMBER = '573116759247';
 
@@ -80,6 +84,10 @@ export const products: ProductItem[] = [
     ],
     images: [
       felizDia1,
+      felizDia2,
+      felizDia3,
+      felizDia4,
+      felizDia5
     ],
     customizable: {
       proteinas: [
