@@ -20,10 +20,10 @@ export const products: ProductItem[] = [
       'Globo en helio x1 o metalizado x1',
     ],
     images: [
-      '/cajita feliz 2.jpeg',
-      '/cajita feliz 1.jpeg',
-      '/cajita feliz 3.jpeg',
-      '/cajita feliz 4.jpeg',
+      '/cajita-feliz-2.jpeg',
+      '/cajita-feliz-1.jpeg',
+      '/cajita-feliz-3.jpeg',
+      '/cajita-feliz-4.jpeg',
     ],
     customizable: {
       proteinas: [
@@ -60,7 +60,11 @@ export const products: ProductItem[] = [
       'Mini globos x2',
     ],
     images: [
-      './feliz dia 1.jpeg',
+      '/feliz%20dia%201.jpeg',
+      '/feliz%20dia%202.jpeg',
+      '/feliz%20dia%203.jpeg',
+      '/feliz%20dia%204.jpeg',
+      '/feliz%20dia%205.jpeg'
     ],
     customizable: {
       proteinas: [
@@ -100,10 +104,10 @@ export const products: ProductItem[] = [
       'Musg o dos globos en helio',
     ],
     images: [
-      '/src/assets/excelente dia 1.jpeg',
-      '/src/assets/excelente dia 2.jpeg',
-      '/src/assets/excelente dia 3.jpeg',
-      '/src/assets/excelente dia 4.jpeg',
+      '/excelente%20dia%201.jpeg',
+      '/excelente%20dia%202.jpeg',
+      '/excelente%20dia%203.jpeg',
+      '/excelente%20dia%204.jpeg',
     ],
     customizable: {
       proteinas: [
@@ -141,8 +145,8 @@ export const products: ProductItem[] = [
       'Musg o dos globos en helio',
     ],
     images: [
-      '/src/assets/hoy es tu dia 2.jpeg',
-      '/src/assets/hoy es tu dia 1.jpeg',
+      '/hoy%20es%20tu%20dia%202.jpeg',
+      '/hoy%20es%20tu%20dia%201.jpeg',
     ],
     customizable: {
       proteinas: [
@@ -171,8 +175,8 @@ export const products: ProductItem[] = [
       'Globo metalizado',
     ],
     images: [
-            '/src/assets/bandeja dulcera 2.jpeg',
-            '/src/assets/bandeja dulcera 1.jpeg',
+      '/bandeja%20dulcera%202.jpeg',
+      '/bandeja%20dulcera%201.jpeg',
     ],
     customizable: {
       proteinas: [],
@@ -189,7 +193,7 @@ export const adicionales: Additional[] = [
   { id: 'vino-gato-negro', name: 'Vino Gato Negro 750 ml', price: 80000 },
   { id: 'baileys', name: 'Baileys crema de whisky 750 ml', price: 85000 },
   { id: 'vino-chenet', name: 'Vino espumoso JP Chenet 750 ml', price: 90000 },
-  { id: 'ferrero-3', name: 'Chocolates Ferrero x3 (paquete)', price: 12000 },
+  { id: 'ferrero-3', name: 'Choles Ferrero x3 (paquete)', price: 12000 },
   { id: 'ferrero-4', name: 'Chocolates Ferrero x4 (caja)', price: 20000 },
   { id: 'ferrero-8', name: 'Chocolates Ferrero x8', price: 50000 },
   { id: 'musg', name: 'Musg personalizado', price: 20000, note: 'Mínimo 48h de anticipación' },

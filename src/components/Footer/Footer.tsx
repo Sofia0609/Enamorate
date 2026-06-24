@@ -21,7 +21,7 @@ export const Footer = () => {
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.brand}>
-            <img src="src/assets/Logo_NavBar.png" alt="Enamorate Logo" className={styles.brandLogo}/>
+            <img src="/Logo_NavBar.png" alt="Enamorate Logo" className={styles.brandLogo}/>
             <p className={styles.brandSub}>Desayunos Sorpresa · Cali, Colombia</p>
             <p className={styles.delivery}>Envío gratis a todo Cali</p>
           </div>
