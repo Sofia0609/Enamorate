@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { ProductItem, Customization, Additional } from '../../types';
+import type { ProductItem, CustomizableItem, Customization, Additional } from '../../types';
 import { adicionales, formatPrice, WHATSAPP_NUMBER } from '../../data/products';
 import styles from './CustomizerPanel.module.css';
 
@@ -8,25 +8,55 @@ interface Props {
 }
 
 export const CustomizerPanel = ({ product }: Props) => {
-  const defaultProteina = product.customizable.proteinas.find(p => p.default) ?? product.customizable.proteinas[0] ?? null;
-  const defaultBebida = product.customizable.bebidas.find(b => b.default) ?? product.customizable.bebidas[0] ?? null;
+  const isMultiSelect = product.customizable.bebidasMultiSelect ?? false;
+  const defaultBebidaIds = product.customizable.bebidasDefaultIds ?? [];
+  const maxSelect = product.customizable.bebidasMaxSelect ?? Infinity;
+
+  const defaultProteina =
+    product.customizable.proteinas.find(p => p.default) ??
+    product.customizable.proteinas[0] ??
+    null;
+
+  const defaultBebidaSingle =
+    product.customizable.bebidas.find(b => b.default) ??
+    product.customizable.bebidas[0] ??
+    null;
+
+  const defaultBebidasMulti: CustomizableItem[] = isMultiSelect
+    ? product.customizable.bebidas.filter(b => defaultBebidaIds.includes(b.id))
+    : [];
 
   const [customization, setCustomization] = useState<Customization>({
     proteina: defaultProteina,
-    bebida: defaultBebida,
+    bebida: isMultiSelect ? null : defaultBebidaSingle,
     adicionales: [],
     mensaje: '',
   });
 
+  const [bebidasSeleccionadas, setBebidasSeleccionadas] = useState<CustomizableItem[]>(
+    defaultBebidasMulti
+  );
+
   const [adicionalesOpen, setAdicionalesOpen] = useState(false);
 
-  // Calcular precio total
+  const bebidasExtraCost = isMultiSelect
+    ? bebidasSeleccionadas.reduce((sum, b) => sum + b.extraCost, 0)
+    : (customization.bebida?.extraCost ?? 0);
+
   const extraCost =
     (customization.proteina?.extraCost ?? 0) +
-    (customization.bebida?.extraCost ?? 0) +
+    bebidasExtraCost +
     customization.adicionales.reduce((sum, a) => sum + a.price, 0);
 
   const totalPrice = product.price + extraCost;
+
+  const toggleBebida = (option: CustomizableItem) => {
+    setBebidasSeleccionadas(prev => {
+      const exists = prev.find(b => b.id === option.id);
+      if (exists) return prev;
+      return [...prev.slice(1), option];
+    });
+  };
 
   const toggleAdicional = (item: Additional) => {
     setCustomization(prev => {
@@ -56,7 +86,13 @@ export const CustomizerPanel = ({ product }: Props) => {
       lines.push(`*Proteína:* ${customization.proteina.label}${extra}`);
     }
 
-    if (customization.bebida) {
+    if (isMultiSelect && bebidasSeleccionadas.length > 0) {
+      lines.push(`*Bebidas:*`);
+      bebidasSeleccionadas.forEach(b => {
+        const extra = b.extraCost > 0 ? ` (+${formatPrice(b.extraCost)})` : ' (incluido)';
+        lines.push(`  • ${b.label}${extra}`);
+      });
+    } else if (!isMultiSelect && customization.bebida) {
       const extra = customization.bebida.extraCost > 0
         ? ` (+${formatPrice(customization.bebida.extraCost)})`
         : customization.bebida.extraCost < 0
@@ -89,7 +125,9 @@ export const CustomizerPanel = ({ product }: Props) => {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
   };
 
-  const hasCustomizations = product.customizable.proteinas.length > 0 || product.customizable.bebidas.length > 0;
+  const hasCustomizations =
+    product.customizable.proteinas.length > 0 ||
+    product.customizable.bebidas.length > 0;
 
   return (
     <div className={styles.panel}>
@@ -100,7 +138,9 @@ export const CustomizerPanel = ({ product }: Props) => {
           <p className={styles.price}>{formatPrice(totalPrice)}</p>
           {extraCost !== 0 && (
             <p className={styles.extraNote}>
-              {extraCost > 0 ? `+${formatPrice(extraCost)} por personalización` : `${formatPrice(extraCost)} por personalización`}
+              {extraCost > 0
+                ? `+${formatPrice(extraCost)} por personalización`
+                : `${formatPrice(extraCost)} por personalización`}
             </p>
           )}
         </div>
@@ -113,7 +153,12 @@ export const CustomizerPanel = ({ product }: Props) => {
           <div className={styles.customizerHeader}>
             <div>
               <p className={styles.customizerTitle}>Personaliza tu desayuno</p>
-              <p className={styles.customizerSub}>Puedes cambiar proteína y bebida con costo adicional</p>
+              <p className={styles.customizerSub}>
+                Puedes cambiar proteína y bebida
+                {isMultiSelect && maxSelect < product.customizable.bebidas.length
+                  ? ` — elige hasta ${maxSelect} bebidas`
+                  : ' con costo adicional'}
+              </p>
             </div>
           </div>
 
@@ -133,12 +178,13 @@ export const CustomizerPanel = ({ product }: Props) => {
                     >
                       <span className={styles.optionLabel}>{option.label}</span>
                       <span className={styles.optionCost}>
-                        {option.extraCost === 0
-                          ? <span className={styles.included}>Incluido</span>
-                          : option.extraCost > 0
-                          ? <span className={styles.extra}>+{formatPrice(option.extraCost)}</span>
-                          : <span className={styles.discount}>{formatPrice(option.extraCost)}</span>
-                        }
+                        {option.extraCost === 0 ? (
+                          <span className={styles.included}>Incluido</span>
+                        ) : option.extraCost > 0 ? (
+                          <span className={styles.extra}>+{formatPrice(option.extraCost)}</span>
+                        ) : (
+                          <span className={styles.discount}>{formatPrice(option.extraCost)}</span>
+                        )}
                       </span>
                     </button>
                   );
@@ -150,25 +196,54 @@ export const CustomizerPanel = ({ product }: Props) => {
           {/* Bebidas */}
           {product.customizable.bebidas.length > 0 && (
             <div className={styles.group}>
-              <p className={styles.groupLabel}> Bebida</p>
+              <div className={styles.groupLabelRow}>
+                <p className={styles.groupLabel}>
+                  Bebida{isMultiSelect ? 's' : ''}
+                </p>
+                {isMultiSelect && maxSelect < product.customizable.bebidas.length && (
+                  <span className={styles.multiSelectHint}>
+                    Elige hasta {maxSelect}
+                  </span>
+                )}
+              </div>
               <div className={styles.options}>
                 {product.customizable.bebidas.map(option => {
-                  const isSelected = customization.bebida?.id === option.id;
+                  const isDefault = defaultBebidaIds.includes(option.id);
+                  const isSelected = isMultiSelect
+                    ? bebidasSeleccionadas.some(b => b.id === option.id)
+                    : customization.bebida?.id === option.id;
+
                   return (
                     <button
                       key={option.id}
-                      className={`${styles.option} ${isSelected ? styles.optionSelected : ''}`}
-                      onClick={() => setCustomization(prev => ({ ...prev, bebida: option }))}
+                      className={`
+                        ${styles.option}
+                        ${isSelected ? styles.optionSelected : ''}
+                        ${isMultiSelect && isDefault ? styles.optionDefault : ''}
+                      `}
+                      onClick={() => {
+                        if (isMultiSelect) {
+                          toggleBebida(option);
+                        } else {
+                          setCustomization(prev => ({ ...prev, bebida: option }));
+                        }
+                      }}
                       aria-pressed={isSelected}
                     >
-                      <span className={styles.optionLabel}>{option.label}</span>
+                      <span className={styles.optionLabel}>
+                        {option.label}
+                        {isMultiSelect && isDefault && (
+                          <span className={styles.defaultTag}> · Incluida</span>
+                        )}
+                      </span>
                       <span className={styles.optionCost}>
-                        {option.extraCost === 0
-                          ? <span className={styles.included}>Incluido</span>
-                          : option.extraCost > 0
-                          ? <span className={styles.extra}>+{formatPrice(option.extraCost)}</span>
-                          : <span className={styles.discount}>{formatPrice(option.extraCost)}</span>
-                        }
+                        {option.extraCost === 0 ? (
+                          <span className={styles.included}>Incluido</span>
+                        ) : option.extraCost > 0 ? (
+                          <span className={styles.extra}>+{formatPrice(option.extraCost)}</span>
+                        ) : (
+                          <span className={styles.discount}>{formatPrice(option.extraCost)}</span>
+                        )}
                       </span>
                     </button>
                   );
@@ -186,7 +261,7 @@ export const CustomizerPanel = ({ product }: Props) => {
           onClick={() => setAdicionalesOpen(!adicionalesOpen)}
           aria-expanded={adicionalesOpen}
         >
-          <span> Agregar extras al pedido</span>
+          <span>Agregar extras al pedido</span>
           <span className={`${styles.chevron} ${adicionalesOpen ? styles.chevronOpen : ''}`}>▾</span>
         </button>
 
@@ -245,12 +320,19 @@ export const CustomizerPanel = ({ product }: Props) => {
               <span>{customization.proteina.extraCost > 0 ? '+' : ''}{formatPrice(customization.proteina.extraCost)}</span>
             </div>
           )}
-          {customization.bebida && customization.bebida.extraCost !== 0 && (
-            <div className={styles.summaryRow}>
-              <span>Bebida: {customization.bebida.label}</span>
-              <span>{customization.bebida.extraCost > 0 ? '+' : ''}{formatPrice(customization.bebida.extraCost)}</span>
-            </div>
-          )}
+          {isMultiSelect
+            ? bebidasSeleccionadas.filter(b => b.extraCost !== 0).map(b => (
+                <div key={b.id} className={styles.summaryRow}>
+                  <span>Bebida: {b.label}</span>
+                  <span>+{formatPrice(b.extraCost)}</span>
+                </div>
+              ))
+            : customization.bebida && customization.bebida.extraCost !== 0 && (
+                <div className={styles.summaryRow}>
+                  <span>Bebida: {customization.bebida.label}</span>
+                  <span>{customization.bebida.extraCost > 0 ? '+' : ''}{formatPrice(customization.bebida.extraCost)}</span>
+                </div>
+              )}
           {customization.adicionales.map(a => (
             <div key={a.id} className={styles.summaryRow}>
               <span>{a.name}</span>
@@ -271,9 +353,7 @@ export const CustomizerPanel = ({ product }: Props) => {
         </svg>
         Pedir por WhatsApp · {formatPrice(totalPrice)}
       </button>
-      <p className={styles.whatsappNote}>
-        Te redirigiremos a WhatsApp con tu pedido pre-armado
-      </p>
+      <p className={styles.whatsappNote}>Te redirigiremos a WhatsApp con tu pedido pre-armado</p>
     </div>
   );
 };

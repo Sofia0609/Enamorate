@@ -1,6 +1,5 @@
 import type { ProductItem, Additional } from '../types';
 
-// 1. IMPORTACIONES CORREGIDAS CON GUIONES
 import excelenteDia1 from '../assets/excelente-dia-1.jpeg';
 import excelenteDia2 from '../assets/excelente-dia-2.jpeg';
 import excelenteDia3 from '../assets/excelente-dia-3.jpeg';
@@ -22,6 +21,8 @@ import cajitaFeliz1 from '../assets/cajita-feliz-1.jpeg';
 import cajitaFeliz2 from '../assets/cajita-feliz-2.jpeg';
 import cajitaFeliz3 from '../assets/cajita-feliz-3.jpeg';
 import cajitaFeliz4 from '../assets/cajita-feliz-4.jpeg';
+
+import personalizado from '../assets/personalizado.jpg';
 
 export const WHATSAPP_NUMBER = '573116759247';
 
@@ -56,7 +57,7 @@ export const products: ProductItem[] = [
         { id: 'huevos-pericos', category: 'proteina', label: 'Huevos perico', extraCost: 6000 },
       ],
       bebidas: [
-        { id: 'jugo-naranja-plastico', category: 'bebida', label: 'Jugo de naranja (envase plástico)', extraCost: 0, default: true },
+        { id: 'jugo-naranja-plastico', category: 'bebida', label: 'Jugo de naranja (envase plástico)', extraCost: 0},
         { id: 'jugo-naranja-vidrio', category: 'bebida', label: 'Jugo de naranja (envase vidrio)', extraCost: 3000 },
         { id: 'milo-vidrio', category: 'bebida', label: 'Milo (envase vidrio)', extraCost: 5000 },
         { id: 'yogurt-vidrio', category: 'bebida', label: 'Yogurt (envase vidrio)', extraCost: 5000 },
@@ -97,12 +98,16 @@ export const products: ProductItem[] = [
         { id: 'huevos-pericos', category: 'proteina', label: 'Huevos perico', extraCost: 0 },
       ],
       bebidas: [
-        { id: 'jugo-naranja-vidrio', category: 'bebida', label: 'Jugo de naranja (envase vidrio)', extraCost: 0, default: true },
+        { id: 'jugo-naranja-vidrio', category: 'bebida', label: 'Jugo de naranja (envase vidrio)', extraCost: 0},
         { id: 'milo-vidrio', category: 'bebida', label: 'Milo (envase vidrio)', extraCost: 0 },
         { id: 'yogurt-vidrio', category: 'bebida', label: 'Yogurt (envase vidrio)', extraCost: 3000 },
         { id: 'jugo-naranja-plastico', category: 'bebida', label: 'Jugo de naranja (envase plástico)', extraCost: -3000 },
       ],
+      bebidasMultiSelect: true,
+      bebidasDefaultIds: ['jugo-naranja-vidrio', 'milo-vidrio'],
+      bebidasMaxSelect: 2, 
     },
+    
   },
   {
     id: 'excelente-dia',
@@ -140,10 +145,13 @@ export const products: ProductItem[] = [
         { id: 'huevos-pericos', category: 'proteina', label: 'Huevos perico', extraCost: 0 },
       ],
       bebidas: [
-        { id: 'jugo-naranja-vidrio', category: 'bebida', label: 'Jugo de naranja (envase vidrio)', extraCost: 0, default: true },
+        { id: 'jugo-naranja-vidrio', category: 'bebida', label: 'Jugo de naranja (envase vidrio)', extraCost: 0},
         { id: 'milo-vidrio', category: 'bebida', label: 'Milo (envase vidrio)', extraCost: 0 },
         { id: 'yogurt-vidrio', category: 'bebida', label: 'Yogurt (envase vidrio)', extraCost: 0 },
       ],
+      bebidasMultiSelect: true,
+      bebidasDefaultIds: ['jugo-naranja-vidrio', 'milo-vidrio', 'yogurt-vidrio'],
+      bebidasMaxSelect: 3,  
     },
   },
   {
@@ -179,10 +187,13 @@ export const products: ProductItem[] = [
         { id: 'huevos-pericos', category: 'proteina', label: 'Huevos perico', extraCost: 0 },
       ],
       bebidas: [
-        { id: 'jugo-naranja-vidrio', category: 'bebida', label: 'Jugo de naranja (envase vidrio)', extraCost: 0, default: true },
+        { id: 'jugo-naranja-vidrio', category: 'bebida', label: 'Jugo de naranja (envase vidrio)', extraCost: 0},
         { id: 'milo-vidrio', category: 'bebida', label: 'Milo (envase vidrio)', extraCost: 0 },
         { id: 'yogurt-vidrio', category: 'bebida', label: 'Yogurt (envase vidrio)', extraCost: 0 },
       ],
+      bebidasMultiSelect: true,
+      bebidasDefaultIds: ['jugo-naranja-vidrio', 'milo-vidrio', 'yogurt-vidrio'],
+      bebidasMaxSelect: 3,
     },
   },
   {
@@ -200,6 +211,21 @@ export const products: ProductItem[] = [
     images: [
       bandejaDulcera2,
       bandejaDulcera1,
+    ],
+    customizable: {
+      proteinas: [],
+      bebidas: [],
+    },
+  },
+  {
+    id: 'pedido-personalizado',
+    name: 'Pedido Personalizado',
+    price: 0,
+    description: 'Arma tu desayuno ideal desde cero. Cuéntanos qué quieres y lo hacemos realidad.',
+    badge: 'A tu medida',
+    includes: ["Dirigete a WhatsApp para empezar con el armado de tu pedido!"],
+    images: [
+      personalizado,
     ],
     customizable: {
       proteinas: [],

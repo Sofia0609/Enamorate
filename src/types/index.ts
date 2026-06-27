@@ -16,6 +16,9 @@ export interface ProductItem {
   customizable: {
     proteinas: CustomizableItem[];
     bebidas: CustomizableItem[];
+    bebidasMultiSelect?: boolean;      
+    bebidasDefaultIds?: string[]; 
+    bebidasMaxSelect?: number; 
   };
   badge?: string;
 }
@@ -33,3 +36,5 @@ export interface Customization {
   adicionales: Additional[];
   mensaje: string;
 }
+
+
