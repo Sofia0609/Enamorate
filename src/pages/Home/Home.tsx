@@ -38,7 +38,7 @@ export const Home = () => {
           </div>
           <div className={styles.heroVisual} aria-hidden="true">
             <div className={styles.heroHeart}>
-              <img src={LogoFull} alt="Enamorate Logo" className={styles.heroLogo}/>
+              <img src={LogoFull} alt="Enamorate Logo" className={styles.heroImg}/>
             </div>
           </div>
         </div>
